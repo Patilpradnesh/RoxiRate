@@ -1,5 +1,5 @@
 require("dotenv").config();
-
+const cors = require("cors");
 const express = require("express");
 const app = express();
 const pool = require("./config/db");
@@ -9,6 +9,11 @@ const storeRoutes = require("./routes/storeRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const ownerRoutes = require("./routes/ownerRoutes");
 
+
+app.use(cors({
+    origin: "http://localhost:5173",
+    credentials: true
+}));
 app.use(express.json());
 app.use("/api/auth", authRouters);
 app.use("/api/rating", ratingRoutes);

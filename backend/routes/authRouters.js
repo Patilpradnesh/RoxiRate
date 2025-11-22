@@ -1,17 +1,16 @@
-const express= require("express");
+const express = require("express");
 const router = express.Router();
 const { signupUser, signinUser, updatePassword } = require("../controllers/authController");
 const { signupValidation, handleValidation } = require("../middlewares/validators");
+const auth = require("../middlewares/auth");
 
-
-
-const auth=require('../middlewares/auth.js');
-
-router.post("/signup",signupUser);
-router.post("/signIn",signinUser);
-router.patch("/update-password", auth, updatePassword);
+// SIGNUP (with validation)
 router.post("/signup", signupValidation, handleValidation, signupUser);
 
+// LOGIN (THIS is the correct name your frontend expects)
+router.post("/login", signinUser);
 
+// UPDATE PASSWORD
+router.patch("/update-password", auth, updatePassword);
 
-module.exports= router;
+module.exports = router;

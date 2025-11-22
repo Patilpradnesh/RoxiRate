@@ -1,17 +1,15 @@
-// src/components/RatingStars.jsx
-import React from "react";
-
-export default function RatingStars({ value = 0, onChange, readOnly = false }) {
-  const stars = [1,2,3,4,5];
+export default function RatingStars({ value = 0, onChange = () => {} }) {
+  const stars = [1, 2, 3, 4, 5];
   return (
-    <div className="flex items-center gap-1">
+    <div className="flex items-center gap-2">
       {stars.map((s) => (
         <button
           key={s}
-          disabled={readOnly}
-          title={`${s} star`}
-          onClick={() => onChange && onChange(s)}
-          className={`w-7 h-7 flex items-center justify-center rounded ${s <= value ? "bg-yellow-400 text-white" : "bg-gray-200 text-gray-600"} focus:outline-none`}
+          type="button"
+          onClick={() => onChange(s)}
+          className={`w-8 h-8 rounded-md flex items-center justify-center transition
+    ${value >= s ? "bg-yellow-500 text-white" : "bg-gray-300 text-gray-600"}
+  `}
         >
           ★
         </button>
