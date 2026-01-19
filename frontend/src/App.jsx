@@ -16,91 +16,93 @@ import AdminUserDetail from "./pages/admin/AdminUserDetail.jsx";
 
 export default function App() {
   return (
-    <>
+    <div className="app-bg">
       <Header />
-      <main className="container-max py-8">
-        <div className="flex flex-col gap-6">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
 
-            {/* Protected Route Example */}
-            <Route
-              path="/stores"
-              element={
-                <ProtectedRoute roles={["user", "admin", "owner"]}>
-                  <Stores />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/profile"
-              element={
-                <ProtectedRoute roles={["user", "admin", "owner"]}>
-                  <Profile />
-                </ProtectedRoute>
-              }
-            />
+      <main className="container-max py-8 sm:py-10">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
 
-            <Route
-              path="/owner/dashboard"
-              element={
-                <ProtectedRoute roles={["owner"]}>
-                  <OwnerDashboard />
-                </ProtectedRoute>
-              }
-            />
+          <Route
+            path="/stores"
+            element={
+              <ProtectedRoute roles={["user", "admin", "owner"]}>
+                <Stores />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute roles={["user", "admin", "owner"]}>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
 
-            <Route
-              path="/owner/ratings"
-              element={
-                <ProtectedRoute roles={["owner"]}>
-                  <OwnerRatings />
-                </ProtectedRoute>
-              }
-            />
+          <Route
+            path="/owner/dashboard"
+            element={
+              <ProtectedRoute roles={["owner"]}>
+                <OwnerDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/owner/ratings"
+            element={
+              <ProtectedRoute roles={["owner"]}>
+                <OwnerRatings />
+              </ProtectedRoute>
+            }
+          />
 
-            <Route
-              path="/admin/users"
-              element={
-                <ProtectedRoute roles={["admin"]}>
-                  <AdminUsers />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/admin/dashboard"
-              element={
-                <ProtectedRoute roles={["admin"]}>
-                  <AdminDashboard />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/admin/stores"
-              element={
-                <ProtectedRoute roles={["admin"]}>
-                  <AdminStores />
-                </ProtectedRoute>
-              }
-            />
+          <Route
+            path="/admin/users"
+            element={
+              <ProtectedRoute roles={["admin"]}>
+                <AdminUsers />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/dashboard"
+            element={
+              <ProtectedRoute roles={["admin"]}>
+                <AdminDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/stores"
+            element={
+              <ProtectedRoute roles={["admin"]}>
+                <AdminStores />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/users/:id"
+            element={
+              <ProtectedRoute roles={["admin"]}>
+                <AdminUserDetail />
+              </ProtectedRoute>
+            }
+          />
 
-            <Route
-              path="/admin/users/:id"
-              element={
-                <ProtectedRoute roles={["admin"]}>
-                  <AdminUserDetail />
-                </ProtectedRoute>
-              }
-            />
-
-            {/* Fallback */}
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </div>
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
       </main>
-    </>
+
+      <footer className="container-max pb-10">
+        <div className="text-xs text-slate-500">
+          © {new Date().getFullYear()} StoreRating • Built with MERN
+        </div>
+      </footer>
+
+      <Toast />
+    </div>
   );
 }
-<Toast />;

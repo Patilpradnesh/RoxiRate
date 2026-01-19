@@ -18,21 +18,23 @@ export default function Profile() {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white p-6 rounded-xl shadow-card">
-      <h2 className="text-xl font-semibold mb-4">Update Password</h2>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+    <div className="max-w-md mx-auto card-padded">
+      <h2 className="text-xl font-semibold text-slate-900">Update password</h2>
+      <p className="text-sm text-slate-600 mt-1">Choose a strong password for your account.</p>
+
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 mt-6">
         <div>
-          <label className="text-sm block mb-1">Old password</label>
-          <input {...register("oldPassword")} type="password" required className="w-full border rounded-lg px-3 py-2" />
+          <label className="label">Old password</label>
+          <input {...register("oldPassword")} type="password" required className="input mt-1" />
         </div>
 
         <div>
-          <label className="text-sm block mb-1">New password</label>
-          <input {...register("newPassword")} type="password" required className="w-full border rounded-lg px-3 py-2" />
-          <p className="text-xs text-muted mt-1">8–16 chars, at least one uppercase and one special character</p>
+          <label className="label">New password</label>
+          <input {...register("newPassword")} type="password" required className="input mt-1" />
+          <p className="text-xs text-slate-500 mt-1">8–16 chars, at least one uppercase and one special character</p>
         </div>
 
-        <button className="w-full bg-primary text-white py-2 rounded-lg">Save</button>
+        <button className="btn-primary w-full">Save</button>
       </form>
     </div>
   );

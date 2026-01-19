@@ -1,11 +1,15 @@
 const { Pool } = require("pg");
 
-const pool = new Pool({
-  user: "postgres",
-  host: "localhost",
-  database: "Roxiler_db",   // VERY IMPORTANT
-  password: "4124",
-  port: 5432
-});
+const connectionString = process.env.DATABASE_URL;
+
+const pool = connectionString
+  ? new Pool({ connectionString })
+  : new Pool({
+      user: process.env.PGUSER || "postgres",
+      host: process.env.PGHOST || "localhost",
+      database: process.env.PGDATABASE || "Roxiler_db",
+      password: process.env.PGPASSWORD || "4124",
+      port: Number.parseInt(process.env.PGPORT || "5432", 10),
+    });
 
 module.exports = pool;
